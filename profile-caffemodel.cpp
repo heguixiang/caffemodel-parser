@@ -26,9 +26,14 @@ using google::protobuf::Message;
 int main(int argc, char * argv[])
 {
     string sCaffeModel(argv[1]);
+    size_t fileNameIdx = sCaffeModel.find('.', 0);
+    string sTxtFileName = sCaffeModel.substr(0, fileNameIdx);
+    sTxtFileName += ".txt";
+
     NetParameter proto;
     ReadProtoFromBinaryFile(sCaffeModel, &proto);
-    WriteProtoToTextFile(proto, "./test.txt");      
+    WriteProtoToTextFile(proto, sTxtFileName); 
+     
     return 0;
 }
                                                                                  
